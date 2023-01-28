@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:untitled1/constants/color.dart';
+import 'package:untitled1/constants/fontWeights.dart';
 
-import '../Controller/LitigationController.dart';
-import '../core/constants/app_colors.dart';
+import '../constants/app_colors.dart';
 
 class TextFormFieldValidation extends StatefulWidget {
   final TextEditingController controller;
@@ -16,7 +17,8 @@ class TextFormFieldValidation extends StatefulWidget {
     Key? key,
     required this.controller,
     required this.formKey,
-    required this.label, this.isSummary,
+    required this.label,
+    this.isSummary,
   }) : super(key: key);
 
   @override
@@ -27,10 +29,9 @@ class TextFormFieldValidation extends StatefulWidget {
 class _TextFormFieldValidationState extends State<TextFormFieldValidation> {
   bool error = false;
   FocusNode myFocusNode = FocusNode();
-  LitigationController caseExplorerController = Get.put(LitigationController());
 
   @override
-      void initState() {
+  void initState() {
     widget.controller.addListener(() {
       setState(() {
         widget.controller.value.text != '';
@@ -53,7 +54,7 @@ class _TextFormFieldValidationState extends State<TextFormFieldValidation> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         // elevation: 4,
         child: TextFormField(
-          maxLines: widget.isSummary!=null ? 7 : 1,
+          maxLines: widget.isSummary != null ? 7 : 1,
           focusNode: myFocusNode,
           onEditingComplete: () {
             print(widget.formKey.currentState!.validate());
@@ -88,14 +89,13 @@ class _TextFormFieldValidationState extends State<TextFormFieldValidation> {
 
             labelText: widget.label,
             floatingLabelStyle: TextStyle(
-                color: myFocusNode.hasPrimaryFocus
-                    ? AppColors.appBlue
-                    : Colors.grey),
+                fontWeight: FontWeight.w600,
+                color: myFocusNode.hasPrimaryFocus ? tYellow : Colors.grey),
             floatingLabelBehavior: FloatingLabelBehavior.auto,
 
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: AppColors.appBlue),
+              borderSide: BorderSide(color: tPurple),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
