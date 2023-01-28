@@ -52,7 +52,7 @@ Color shareButtonColor = Color(0xFF09B778);
 //dont make this const
 dynamic activeButtonColor = MaterialStateProperty.all<Color>(Color(0xff152968));
 dynamic deactiveButtonColor =
-MaterialStateProperty.all<Color>(Color(0xFFC4C9D9));
+    MaterialStateProperty.all<Color>(Color(0xFFC4C9D9));
 
 Color borderLightColor = Color(0xFF878787);
 Color textLightColor = Color(0xFF979797);
@@ -62,7 +62,7 @@ Color truckGreen = Color(0xFF09B778);
 Color blueTitleColor = Color(0xFF152968);
 Color unactiveReset = Color(0xffC4C9D9);
 dynamic greyishWhiteColorM =
-MaterialStateProperty.all<Color>(greyishWhiteColor);
+    MaterialStateProperty.all<Color>(greyishWhiteColor);
 
 Color darkCharcoal = Color(0xff333333);
 const Color red = Colors.red;
@@ -70,3 +70,8 @@ const Color navy = Color(0xff000066);
 
 const Color fadeGrey = Color(0xFFF1F1F1);
 const Color lightGrey = Color(0xffDADADA);
+
+Color tPurple = Color(0xff55418E);
+Color tYellow = Color(0xffFFA500);
+Color tGrey = Color(0xffE5E5E5);
+Color tWhite = Color(0xffFFFFFF);
