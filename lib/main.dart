@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'Views/Screens/LandingPage.dart';
 
 void main() {
