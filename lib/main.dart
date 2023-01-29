@@ -7,12 +7,15 @@ import 'package:untitled1/user_details_first.dart';
 import 'package:untitled1/user_form_page.dart';
 
 import 'package:untitled1/Views/Screens/MockPage.dart';
+import 'Services/NotificationService.dart';
 import 'Views/Screens/LandingPage.dart';
 
-void main() {
+Future<void> main() async {
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
+  WidgetsFlutterBinding.ensureInitialized();
+  await LocalNoticeService().setup();
   runApp(const MyApp());
 }
 
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(fontFamily: 'Poppins'),
       debugShowCheckedModeBanner: false,
-      home: intro(),
+      home: LandingPage(),
     );
   }
 }

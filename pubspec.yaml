@@ -21,7 +21,7 @@ version: 1.0.0+1
 
 environment:
 
-  sdk: '>=2.19.0-146.2.beta <3.0.0'
+  sdk: '2.18.5'
 
 
 # Dependencies specify other packages that your package needs in order to work.
@@ -43,13 +43,20 @@ dependencies:
   flutter_datetime_picker: ^1.5.1
 
   carousel_slider: ^4.2.1
-  #url_launcher: ^6.1.8
+  url_launcher:
   firebase_auth: ^4.2.5
   google_sign_in: ^5.4.4
   firebase_core:
   flutter_contacts: ^1.1.5+1
   get: ^4.6.5
   permission_handler: ^10.2.0
+  flutter_local_notifications: ^9.5.3+1
+  timezone: ^0.8.0
+  rxdart: ^0.27.5
+  path_provider: ^2.0.11
+  http: ^0.13.4
+  flutter_native_timezone: ^2.0.0
+  flutter_inappwebview: ^5.7.2+3
 
 
 dev_dependencies:
