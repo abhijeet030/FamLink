@@ -13,7 +13,7 @@ getMemberApi() async {
   try {
     final response = await http.get(
       Uri.parse(
-          "http://192.168.1.35:8000/members/?uuid=0b5d14f8-1a2a-4e7f-a192-8e37f0538fc8"),
+          "http://192.168.1.17:8000/members/?uuid=0b5d14f8-1a2a-4e7f-a192-8e37f0538fc8"),
       headers: <String, String>{
         'Content-Type': 'application/json',
       },
