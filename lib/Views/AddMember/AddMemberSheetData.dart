@@ -13,7 +13,11 @@ import '../../constants/color.dart';
 import 'AddField.dart';
 
 class AddMemberSheetData extends StatefulWidget {
-  const AddMemberSheetData({Key? key}) : super(key: key);
+  final String name;
+  final String phoneNumber;
+  const AddMemberSheetData(
+      {Key? key, required this.name, required this.phoneNumber})
+      : super(key: key);
 
   @override
   _AddMemberSheetState createState() => _AddMemberSheetState();
@@ -45,7 +49,10 @@ final formKeyLink = GlobalKey<FormState>();
 
 class _AddMemberSheetState extends State<AddMemberSheetData> {
   @override
+  @override
   void initState() {
+    nameController.text = widget.name ?? "";
+    phoneNumberController.text = widget.phoneNumber ?? "";
     addMemberController.updateMemberInfoObj([
       {
         "controller": nameController,
@@ -76,6 +83,7 @@ class _AddMemberSheetState extends State<AddMemberSheetData> {
     super.initState();
   }
 
+  double _currentSliderValue = 3;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -125,6 +133,40 @@ class _AddMemberSheetState extends State<AddMemberSheetData> {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                ),
+                child: Card(
+                  child: Column(
+                    children: [
+                      Text(
+                        "Priority",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: black,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      Slider(
+                        activeColor: tYellow,
+                        thumbColor: tYellow,
+                        value: _currentSliderValue,
+                        max: 5,
+                        divisions: 5,
+                        label: _currentSliderValue.round().toString(),
+                        onChanged: (double value) {
+                          setState(() {
+                            _currentSliderValue = value;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               Obx(
                 () => Expanded(
                   child: Form(
@@ -133,11 +175,11 @@ class _AddMemberSheetState extends State<AddMemberSheetData> {
                       shrinkWrap: true,
                       itemCount: addMemberController.memberInfoObj.length,
                       itemBuilder: (context, index) => Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 5.0, vertical: 8),
+                          padding: const EdgeInsets.fromLTRB(5, 0, 5, 8),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.fromLTRB(5, 0, 5, 8),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 TextFormFieldValidation(

@@ -4,6 +4,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 class AddMemberController extends GetxController {
   RxList contactList = [].obs;
   RxList memberInfoObj = [].obs;
+  RxList memberInfoObjGet = [].obs;
 
   void updateContactList(List value) {
     contactList.value = value;
@@ -11,5 +12,9 @@ class AddMemberController extends GetxController {
 
   void updateMemberInfoObj(List value) {
     memberInfoObj.value = value;
+  }
+
+  void updateMemberInfoObjGet(List value) {
+    memberInfoObjGet.value = value;
   }
 }

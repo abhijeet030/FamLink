@@ -29,6 +29,11 @@ class TextFormFieldValidation extends StatefulWidget {
 class _TextFormFieldValidationState extends State<TextFormFieldValidation> {
   bool error = false;
   FocusNode myFocusNode = FocusNode();
+  @override
+  void dispose() {
+    widget.controller.removeListener(() {});
+    super.dispose();
+  }
 
   @override
   void initState() {

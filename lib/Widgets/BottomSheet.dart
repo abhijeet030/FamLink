@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:untitled1/constants/color.dart';
 
+import '../Api/GetMemberData.dart';
 import '../Controllers/MemberController.dart';
 import '../Views/AddMember/AddMemberSheet.dart';
 import '../constants/app_colors.dart';
@@ -33,18 +35,16 @@ class _BottomSheetButtonState extends State<BottomSheetButton> {
   Widget build(BuildContext context) {
     return CupertinoButton(
         padding: const EdgeInsets.all(0), // important
-        color: AppColors.white,
+        color: tYellow,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Flexible(
-            child: Container(
-              child: Text(
-                widget.buttonTitle,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.black,
-                    ),
-                overflow: TextOverflow.ellipsis,
-              ),
+          child: Container(
+            child: Text(
+              widget.buttonTitle,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Colors.black,
+                  ),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ),
