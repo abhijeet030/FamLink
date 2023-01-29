@@ -104,7 +104,9 @@ class _AddMemeberSheetState extends State<AddMemeberSheet> {
                               child: Container(
                                 child: Row(
                                   children: [
-                                    Icon(Icons.male),
+                                    CircleAvatar(
+                                      child: Image.asset("assets/son.png"),
+                                    ),
                                     SizedBox(
                                       width: 10,
                                     ),
@@ -140,7 +142,14 @@ class _AddMemeberSheetState extends State<AddMemeberSheet> {
                               ),
                             ),
                             onPressed: () {
-                              Get.to(AddMemberSheetData());
+                              Get.to(AddMemberSheetData(
+                                name: addMemberController
+                                        .contactList[index].name.first ??
+                                    "",
+                                phoneNumber: addMemberController
+                                    .contactList[index].phones.first.number
+                                    .toString(),
+                              ));
                             })),
                   ),
                 ),

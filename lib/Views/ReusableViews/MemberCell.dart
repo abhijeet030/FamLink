@@ -5,7 +5,13 @@ import 'package:untitled1/Views/Screens/MemberDetailPage.dart';
 import 'package:untitled1/constants/textStyles.dart';
 
 class MemberCell extends StatelessWidget {
-  const MemberCell({Key? key}) : super(key: key);
+  final String name;
+  final int gender;
+  final int index;
+
+  const MemberCell(
+      {Key? key, required this.name, required this.gender, required this.index})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +19,10 @@ class MemberCell extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MemberDetailPage()),
+          MaterialPageRoute(
+              builder: (context) => MemberDetailPage(
+                    index: index,
+                  )),
         );
       },
       child: Padding(
@@ -22,7 +31,9 @@ class MemberCell extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
-              child: Image.asset("assets/son.png"),
+              child: gender == 1
+                  ? Image.asset("assets/son.png")
+                  : Image.asset("assets/img/sister.png"),
             ),
             SizedBox(
               width: 10.0,
@@ -41,9 +52,9 @@ class MemberCell extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text(
-                            "Utkarsh Rastogi",
+                            name,
                             style: kLabel,
                           ),
                           SizedBox(
