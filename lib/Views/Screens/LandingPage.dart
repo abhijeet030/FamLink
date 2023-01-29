@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 //import 'package:url_launcher/url_launcher.dart';
@@ -8,6 +9,12 @@ import '../../Api/GetMemberData.dart';
 import '../../Controllers/MemberController.dart';
 import '../../Widgets/BottomSheet.dart';
 import '../../constants/color.dart';
+
+import 'package:untitled1/Views/Screens/MemberDetailPage.dart';
+import 'package:untitled1/Views/Screens/WebView.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../../Services/NotificationService.dart';
+
 import '../../constants/textStyles.dart';
 import '../AddMember/AddMemberSheet.dart';
 import '../AddReminder/AddReminderSheet.dart';
@@ -23,9 +30,8 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   AddMemberController addMemberController = Get.put(AddMemberController());
   List<bool> selectedList = [true, false];
-  String url =
-      "https://images.pexels.com/photos/3912384/pexels-photo-3912384.jpeg";
 
+  @override
   void initState() {
     getMemberApi();
     super.initState();
@@ -48,77 +54,125 @@ class _LandingPageState extends State<LandingPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CarouselSlider(
-                  items: [
-                    //1st Image of Slider
-                    Container(
-                      margin: EdgeInsets.all(6.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        image: DecorationImage(
-                          image: NetworkImage(url),
-                          fit: BoxFit.cover,
+                Padding(
+                  padding: const EdgeInsets.only(top: 18.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      notify();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => InAppWebViewPage()),
+                      );
+                    },
+                    child: CarouselSlider(
+                      items: [
+                        //1st Image of Slider
+                        Container(
+                          margin: EdgeInsets.all(6.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 12.0,
+                                spreadRadius: 2,
+                              )
+                            ],
+                            image: DecorationImage(
+                              image: AssetImage("assets/reminder.png"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
 
-                    //2nd Image of Slider
-                    Container(
-                      margin: EdgeInsets.all(6.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        image: DecorationImage(
-                          image: NetworkImage(url),
-                          fit: BoxFit.cover,
+                        //2nd Image of Slider
+                        Container(
+                          margin: EdgeInsets.all(6.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 12.0,
+                                spreadRadius: 2,
+                              )
+                            ],
+                            image: DecorationImage(
+                              image: AssetImage("assets/carousel1.png"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(6.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        image: DecorationImage(
-                          image: NetworkImage(url),
-                          fit: BoxFit.cover,
+                        Container(
+                          margin: EdgeInsets.all(6.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 12.0,
+                                spreadRadius: 2,
+                              )
+                            ],
+                            image: DecorationImage(
+                              image: AssetImage("assets/carousel2.png"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
 
-                    //3rd Image of Slider
-                    Container(
-                      margin: EdgeInsets.all(6.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        image: DecorationImage(
-                          image: NetworkImage(url),
-                          fit: BoxFit.cover,
+                        //3rd Image of Slider
+                        Container(
+                          margin: EdgeInsets.all(6.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 12.0,
+                                spreadRadius: 2,
+                              )
+                            ],
+                            image: DecorationImage(
+                              image: AssetImage("assets/reminder.png"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
+
+                        //4th Image of Slider
+                        Container(
+                          margin: EdgeInsets.all(6.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 12.0,
+                                spreadRadius: 2,
+                              )
+                            ],
+                            image: DecorationImage(
+                              image: AssetImage("assets/reminder.png"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ],
+
+                      //Slider Container properties
+                      options: CarouselOptions(
+                        height: 170.0,
+                        enlargeCenterPage: true,
+                        autoPlay: true,
+                        aspectRatio: 30 / 9,
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                        enableInfiniteScroll: true,
+                        autoPlayAnimationDuration: Duration(milliseconds: 800),
+                        viewportFraction: 0.8,
                       ),
                     ),
-
-                    //4th Image of Slider
-                    Container(
-                      margin: EdgeInsets.all(6.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        image: DecorationImage(
-                          image: NetworkImage(url),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ],
-
-                  //Slider Container properties
-                  options: CarouselOptions(
-                    height: 180.0,
-                    enlargeCenterPage: true,
-                    autoPlay: true,
-                    aspectRatio: 20 / 9,
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    enableInfiniteScroll: true,
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
-                    viewportFraction: 0.7,
                   ),
                 ),
                 Padding(
@@ -176,7 +230,7 @@ class _LandingPageState extends State<LandingPage> {
                       ),
                     ),
                   ),
-                ),
+                )
               ],
             ),
           ),
@@ -286,9 +340,9 @@ class AppBarContent extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   if (showBackBtn) {
-                    // notification screen
-                  } else {
                     callNumber("9557029657");
+                  } else {
+                    // notification screen
                   }
                 },
                 child: Padding(
@@ -310,12 +364,21 @@ class AppBarContent extends StatelessWidget {
 }
 
 void callNumber(String phoneNumber) async {
-  // String url = "tel://" + phoneNumber;
-  // if (await canLaunch(url)) {
-  //   await launch(url);
-  // } else {
-  //   throw 'Could not call $phoneNumber';
-  // }
+  final Uri _phoneUri = Uri(scheme: "tel", path: phoneNumber);
+  try {
+    if (await canLaunchUrl(_phoneUri)) await launchUrl(_phoneUri);
+  } catch (error) {
+    throw ("Cannot dial");
+  }
+}
+
+void notify() {
+  LocalNoticeService().addNotification(
+    'Raat hogyi h!',
+    'Mom & dad ko  "Goodnight" bolde',
+    DateTime.now().millisecondsSinceEpoch + 1000,
+    channel: 'testing',
+  );
 }
 
 bool checkIfFamily(bool isFamily, Map member) {
